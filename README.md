@@ -1,4 +1,4 @@
-# [LMTTM-VMI: Linked Memory Token Turing Machine for 3D Volumetric Medical Image Classification](https://github.com/WHKai666666/LMTTM-VMI_Page/)
+# [LMTTM-VMI: Linked Memory Token Turing Machine for 3D Volumetric Medical Image Classification](https://whkai666666.github.io/LMTTM-VMI_Page/)
 
 ---
 
