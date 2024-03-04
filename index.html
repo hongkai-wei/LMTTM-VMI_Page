@@ -1,1 +1,387 @@
-<h1>Welcome to my paper! </h1>h1
+<!DOCTYPE html>
+<!-- modified from url=(0049)https://eborboihuc.github.io/Mono-3DT -->
+<html class="gr__ee_nthu_edu" lang="en">
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="shijieSun" name="author">
+  <title>LMTTM-VMI: Linked Memory Token Turing Machine for 3D Volumetric Medical Image Classification</title>
+
+  <!-- CSS includes -->
+  <link href="./asset/bootstrap.min.css" rel="stylesheet">
+  <link href="./asset/css" rel="stylesheet" type="text/css">
+  <link href="./asset/mystyle.css" rel="stylesheet">
+</head>
+
+<body data-gr-c-s-loaded="true">
+
+<div class="topnav" id="myTopnav">
+  <a href="#header">Home</a>
+  <a href="#abstract">Abstract</a>
+  <a href="#video">Video</a>
+  <a href="#dataset">Code&Dataset</a>
+  <a href="#paper">Paper</a>
+  <a href="#acknowledgement">Acknowledgements</a>
+  <a class="icon" href="javascript:void(0);" onclick="toggleTopNav()">&#9776;</a>
+</div>
+
+
+<div class="container-fluid" id="header">
+  <div class="row">
+    <h1>LMTTM-VMI: Linked Memory Token Turing Machine for 3D Volumetric Medical Image Classification</h1>
+  </div>
+</div> 
+
+<div class="container-fluid" id="teaser">
+  <div class="row">
+    <p style="text-align:center;">
+      <img height="400" src="./ECCV2024/framework.png">
+    </p>
+    <p style="text-align:center;">
+      <img height="230" src="./ECCV2024/MedMNISTv2.png">
+    </p>
+  </div>
+</div>
+
+<div class="container" id="abstract">
+  <h2>Abstract</h2>
+  Leveraging neural networks, particularly Convolutional Neural Networks (CNNs), has advanced medical diagnosis via 2D biomedical image recognition. However, analyzing 3D volumetric medical images with temporal features remains challenging.
+  We introduce Linked Memory Token Turing Machine (LMTTM), a novel neural network model that utilizes external linked memory. This model efficiently processes spatial-temporal dependencies in 3D volumetric medical images, aiding in accurate diagnoses.
+In experiments on six sub-datasets of <a href="https://medmnist.com/">MedMNIST v2</a>, LMTTM achieved state-of-the-art(SOTA) performance in 3D image classification, highlighting its effectiveness in medical diagnosis.
+The code is released at:<a href="https://github.com/WHKai666666/LMTTM-VMI">LMTTM-VMI</a>
+</div>
+
+<div class="container" id="video">
+  <h2>Video Overview</h2>
+  <p style="text-align:center;">
+    
+    <iframe width="375" height="200" src="https://www.youtube.com/embed/9isr0WQB_IA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="200" src="https://www.youtube.com/embed/pSJg135sZrY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="200" src="https://www.youtube.com/embed/Ya3HwEYTwrE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!--<iframe width="375" height="200" src="https://www.youtube.com/embed/9isr0WQB_IA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <video controls="controls" height="200" width="375">
+      <source src="https://www.dropbox.com/sh/nom2u2s7snivwhu/AABCywWoePDi0MnNXM9tXzyfa?dl=0&preview=omni_result.avi" type="video/mp4"></source>
+    </video>
+    <video controls="controls" height="200" width="375">
+      <source src="https://www.dropbox.com/sh/nom2u2s7snivwhu/AABCywWoePDi0MnNXM9tXzyfa?dl=0&preview=UA-DETREAC-MVI_39271.avi" type="video/mp4"></source>
+    </video>-->
+  </p>
+</div>
+
+<div class="container" id="MedMNIST3D">
+  <h2>MedMNIST3D</h2>
+  <div class="row">
+    <div class="col-12">
+
+        <div class="table-responsive justify-content-center">
+
+            <table class="table table-hover" style="text-align: center">
+                <caption style="text-align: center">
+                    An Overview of MedMNIST3D in MedMNIST v2.
+                </caption>
+                <thead class="thead-light">
+                    <tr>
+                        <th style="background-color: #e0e0e0;">MedMNIST3D</th>
+                        <th style="background-color: #e0e0e0;">Data Modality</th>
+                        <th style="background-color: #e0e0e0;">Tasks (# Classes/Labels)</th>
+                        <th style="background-color: #e0e0e0;"># Samples</th>
+                        <th style="background-color: #e0e0e0;"># Training / Validation / Test</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="number-cell">OrganMNIST3D</td>
+                        <td class="number-cell">Abdominal CT</td>
+                        <td class="number-cell">Multi-Class (11)</td>
+                        <td class="number-cell">1,742</td>
+                        <td class="number-cell">971 / 161 / 610</td>
+                    </tr>
+                    <tr>
+                      <td class="number-cell">NoduleMNIST3D</td>
+                      <td class="number-cell">Chest CT</td>
+                      <td class="number-cell">Binary-Class (2)</td>
+                      <td class="number-cell">1,633</td>
+                      <td class="number-cell">1,158 / 165 / 310</td>
+                    </tr>
+                    <tr>
+                      <td class="number-cell">AdrenalMNIST3D</td>
+                      <td class="number-cell">Shape from Abdominal CT</td>
+                      <td class="number-cell">Binary-Class (2)</td>
+                      <td class="number-cell">1,584</td>
+                      <td class="number-cell">1,188 / 98 / 298</td>
+                    </tr>
+                    <tr>
+                      <td class="number-cell">FractureMNIST3D</td>
+                      <td class="number-cell">Chest CT</td>
+                      <td class="number-cell">Multi-Class (3)</td>
+                      <td class="number-cell">1,370</td>
+                      <td class="number-cell">1,027 / 103 / 240</td>
+                    </tr>
+                    <tr>
+                      <td class="number-cell">VesselMNIST3D</td>
+                      <td class="number-cell">Shape from Abdominal CT</td>
+                      <td class="number-cell">Binary-Class (2)</td>
+                      <td class="number-cell">1,908</td>
+                      <td class="number-cell">1,335 / 191 / 382</td>
+                    </tr>
+                    <tr>
+                      <td class="number-cell">SynapseMNIST3D</td>
+                      <td class="number-cell">Electron Microscope</td>
+                      <td class="number-cell">Binary-Class (2)</td>
+                      <td class="number-cell">1,759</td>
+                      <td class="number-cell">	1,230 / 177 / 352</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="container" id="Experiment">
+  <h2>Experiment</h2>
+  <div class="table-responsive justify-content-center">
+    <table class="table table-sm table-hover" style="text-align: center">
+        <caption style="text-align: center">Experiment Performance on MedMNIST3D.</caption>
+        <thead class="thead-light">
+            <tr>
+                <th rowspan="2" style="background-color: #e0e0e0;">Methods</th>
+                <th colspan="2" style="background-color: #e0e0e0;">OrganMNIST3D</th>
+                <th colspan="2" style="background-color: #e0e0e0;">NoduleMNIST3D</th>
+                <th colspan="2" style="background-color: #e0e0e0;">FractureMNIST3D</th>
+                <th colspan="2" style="background-color: #e0e0e0;">AdrenalMNIST3D</th>
+                <th colspan="2" style="background-color: #e0e0e0;">VesselMNIST3D</th>
+                <th colspan="2" style="background-color: #e0e0e0;">SynapseMNIST3D</th>
+            </tr>
+            <tr>
+                <td class="number-cell">AUC</td>
+                <td class="number-cell">ACC</td>
+                <td class="number-cell">AUC</td>
+                <td class="number-cell">ACC</td>
+                <td class="number-cell">AUC</td>
+                <td class="number-cell">ACC</td>
+                <td class="number-cell">AUC</td>
+                <td class="number-cell">ACC</td>
+                <td class="number-cell">AUC</td>
+                <td class="number-cell">ACC</td>
+                <td class="number-cell">AUC</td>
+                <td class="number-cell">ACC</td>
+            </tr>
+        </thead>
+        <tbody class = "container-tbody">
+            <tr>
+                <td class="number-cell">ResNet-18+2.5D</td>
+                <td class="number-cell">0.977</td>
+                <td class="number-cell">0.788</td>
+                <td class="number-cell">0.838</td>
+                <td class="number-cell">0.835</td>
+                <td class="number-cell">0.587</td>
+                <td class="number-cell">0.451</td>
+                <td class="number-cell">0.718</td>
+                <td class="number-cell">0.772</td>
+                <td class="number-cell">0.748</td>
+                <td class="number-cell">0.846</td>
+                <td class="number-cell">0.634</td>
+                <td class="number-cell">0.696</td>
+            </tr>
+            <tr>
+                <td class="number-cell">ResNet-18+3D</td>
+                <td class="number-cell"><u>0.996</u></td>
+                <td class="number-cell"><u>0.907</u></td>
+                <td class="number-cell">0.863</td>
+                <td class="number-cell">0.844</td>
+                <td class="number-cell">0.712</td>
+                <td class="number-cell">0.508</td>
+                <td class="number-cell">0.827</td>
+                <td class="number-cell">0.721</td>
+                <td class="number-cell">0.874</td>
+                <td class="number-cell">0.877</td>
+                <td class="number-cell"><u>0.820</u></td>
+                <td class="number-cell">0.745</td>
+            </tr>
+            <tr>
+                <td class="number-cell">ResNet-18+ACS</td>
+                <td class="number-cell">0.994</td>
+                <td class="number-cell">0.900</td>
+                <td class="number-cell">0.873</td>
+                <td class="number-cell">0.847</td>
+                <td class="number-cell">0.714</td>
+                <td class="number-cell">0.497</td>
+                <td class="number-cell"><u>0.839</u></td>
+                <td class="number-cell">0.754</td>
+                <td class="number-cell"><b>0.930</b></td>
+                <td class="number-cell"><u>0.928</u></td>
+                <td class="number-cell">0.705</td>
+                <td class="number-cell">0.722</td>
+            </tr>
+            <tr>
+                <td class="number-cell">ResNet-50+2.5D</td>
+                <td class="number-cell">0.974</td>
+                <td class="number-cell">0.769</td>
+                <td class="number-cell">0.835</td>
+                <td class="number-cell">0.848</td>
+                <td class="number-cell">0.552</td>
+                <td class="number-cell">0.397</td>
+                <td class="number-cell">0.732</td>
+                <td class="number-cell">0.763</td>
+                <td class="number-cell">0.751</td>
+                <td class="number-cell">0.877</td>
+                <td class="number-cell">0.669</td>
+                <td class="number-cell">0.735</td>
+            </tr>
+            <tr>
+                <td class="number-cell">ResNet-50+3D</td>
+                <td class="number-cell">0.994</td>
+                <td class="number-cell">0.883</td>
+                <td class="number-cell">0.875</td>
+                <td class="number-cell">0.847</td>
+                <td class="number-cell"><u>0.725</u></td>
+                <td class="number-cell">0.494</td>
+                <td class="number-cell">0.828</td>
+                <td class="number-cell">0.745</td>
+                <td class="number-cell">0.907</td>
+                <td class="number-cell">0.918</td>
+                <td class="number-cell"><b>0.851</b></td>
+                <td class="number-cell"><b>0.795</b></td>
+            </tr>
+            <tr>
+                <td class="number-cell">ResNet-50+ACS</td>
+                <td class="number-cell">0.994</td>
+                <td class="number-cell">0.889</td>
+                <td class="number-cell">0.886</td>
+                <td class="number-cell">0.841</td>
+                <td class="number-cell"><b>0.750</b></td>
+                <td class="number-cell">0.517</td>
+                <td class="number-cell">0.828</td>
+                <td class="number-cell">0.758</td>
+                <td class="number-cell">0.912</td>
+                <td class="number-cell">0.858</td>
+                <td class="number-cell">0.719</td>
+                <td class="number-cell">0.709</td>
+            </tr>
+            <tr>
+                <td class="number-cell">auto-sklearn</td>
+                <td class="number-cell">0.977</td>
+                <td class="number-cell">0.814</td>
+                <td class="number-cell"><b>0.914</b></td>
+                <td class="number-cell"><u>0.874</u></td>
+                <td class="number-cell">0.628</td>
+                <td class="number-cell">0.453</td>
+                <td class="number-cell">0.828</td>
+                <td class="number-cell"><u>0.802</u></td>
+                <td class="number-cell">0.910</td>
+                <td class="number-cell">0.915</td>
+                <td class="number-cell">0.631</td>
+                <td class="number-cell">0.730</td>
+            </tr>
+            <tr>
+                <td class="number-cell">AutoKeras</td>
+                <td class="number-cell">0.979</td>
+                <td class="number-cell">0.804</td>
+                <td class="number-cell">0.844</td>
+                <td class="number-cell">0.834</td>
+                <td class="number-cell">0.642</td>
+                <td class="number-cell">0.458</td>
+                <td class="number-cell">0.804</td>
+                <td class="number-cell">0.705</td>
+                <td class="number-cell">0.773</td>
+                <td class="number-cell">0.894</td>
+                <td class="number-cell">0.538</td>
+                <td class="number-cell">0.724</td>
+            </tr>
+            <tr>
+              <td class="number-cell">TTM</td>
+              <td class="number-cell">0.995</td>
+              <td class="number-cell">0.915</td>
+              <td class="number-cell">0.873</td>
+              <td class="number-cell">0.870</td>
+              <td class="number-cell">0.662</td>
+              <td class="number-cell"><u>0.546</u></td>
+              <td class="number-cell">0.816</td>
+              <td class="number-cell">0.808</td>
+              <td class="number-cell">0.855</td>
+              <td class="number-cell">0.922</td>
+              <td class="number-cell">0.709</td>
+              <td class="number-cell">0.753</td>
+            </tr>
+            <tr>
+              <td class="number-cell"><b>LMTTM(Ours)</b></td>
+              <td class="number-cell"><b>0.997</b></td>
+              <td class="number-cell"><b>0.948</b></td>
+              <td class="number-cell"><u>0.891</u></td>
+              <td class="number-cell"><b>0.883</b></td>
+              <td class="number-cell">0.691</td>
+              <td class="number-cell"><b>0.562</b></td>
+              <td class="number-cell"><b>0.847</b></td>
+              <td class="number-cell"><b>0.842</b></td>
+              <td class="number-cell"><u>0.917</u></td>
+              <td class="number-cell"><b>0.931</b></td>
+              <td class="number-cell">0.737</td>
+              <td class="number-cell"><u>0.777</u></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+<div class="container" id="dataset">
+  <h2>Code & Dataset</h2>
+  <!--    <p style="text-align:center;"> <img src="./ICCV2019/sports-360.png" width="100%"></p>-->
+  <!-- <p>Following resources are provided:</p> --> 
+  <div class="row" style="alignment: center">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+      <a href="https://github.com/shijieS/DMMN" target="_blank">
+        <p style="text-align:center;">
+          <img src="./ECCV2024/dmmn_icons.png", height="128"><br>
+          DMM-Net (GitHub)</p>
+      </a>
+    </div>
+
+    <div class="col-sm-3">
+      <a href="https://github.com/shijieS/OmniMOTDataset"
+         target="_blank">
+        <p style="text-align:center;">
+          <img src="./ECCV2024/omotd_icons.png", height="128"><br>
+          OMOT dataset (GitHub)</p>
+      </a>
+    </div>
+    <div class="col-sm-3">
+      <a href="https://github.com/shijieS/OMOTDRecorder"
+         target="_blank">
+        <p style="text-align:center;">
+          <img src="./ECCV2024/omotd_script_icons.png", height="128"><br>
+          OMOT Recording Script (GitHub)</p>
+      </a>
+    </div>
+    <!-- <div class="col-sm-3"></div> -->
+  </div>
+</div>
+
+<!-- Javascript includes -->
+<script src="./asset/jquery-1.8.3.min.js"></script>
+<script src="./asset/mystyle.js"></script>
+<script src="./asset/bootstrap.min.js"></script>
+<script async="" src="./asset/analytics.js"></script>
+<script>
+  (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-98479202-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<div id="point-jawn" style="z-index: 2147483647;"></div>
+</body>
+</html>
